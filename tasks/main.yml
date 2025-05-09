@@ -11,14 +11,9 @@
   include_tasks: debian-stretch.yml
   when: ansible_os_family == "Debian" and ansible_distribution_release == 'stretch'
 
-- name: include tasks for Debian Buster
+- name: include tasks for Debian, but not Stretch
   include_tasks: debian.yml
-  when: ansible_os_family == "Debian" and ansible_distribution_release == 'buster'
-
-- name: include tasks for Ubuntu Bionic
-  include_tasks: debian.yml
-  when: ansible_os_family == "Debian" and ansible_distribution_release == 'bionic'
-
+  when: ansible_os_family == "Debian" and ansible_distribution_release != 'stretch'
 
 - name: Install node-red
   npm:
